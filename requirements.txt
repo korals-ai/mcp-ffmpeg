@@ -1,0 +1,7 @@
+# Runtime dependencies for the workspace-tool-ffmpeg sidecar image.
+# Keep in sync with [project.dependencies] in pyproject.toml.
+
+# MCP server SDK: FastMCP + Streamable HTTP transport. Exposes the ffmpeg
+# tools the workspace agent calls over http://localhost:8094/mcp. ffmpeg
+# itself is the system binary baked into the image (apt), not a pip dep.
+mcp>=1.2,<2

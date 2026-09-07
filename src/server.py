@@ -21,6 +21,7 @@ import time
 from collections.abc import Callable
 from typing import Any
 
+import loopwatch
 import toollog
 from mcp.server.fastmcp import FastMCP
 
@@ -32,7 +33,7 @@ log = logging.getLogger("workspace-tool-ffmpeg")
 HOST = "0.0.0.0"  # noqa: S104 - pod-local bind; nothing injects a host, the pod netns is the fence
 PORT = int(os.environ["WORKSPACE_TOOL_PORT"])
 
-mcp = FastMCP("ffmpeg", host=HOST, port=PORT)
+mcp = FastMCP("ffmpeg", host=HOST, port=PORT, lifespan=loopwatch.lifespan)
 
 
 def _logged(op: str, fn: Callable[..., str], **kwargs: Any) -> str:

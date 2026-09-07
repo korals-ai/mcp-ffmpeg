@@ -41,6 +41,11 @@ COPY workspace-tools/ffmpeg/src ./src
 # same shape connector_base uses. Stdlib-only, so it adds no requirements.
 COPY workspace-tools/toollog ./toollog
 
+# The shared stalled-loop watchdog (apps/workspace-tools/loopwatch). Same
+# placement and import rules as toollog above: COPY'd next to src, imported
+# as `loopwatch` under `python -m` from /app.
+COPY workspace-tools/loopwatch ./loopwatch
+
 
 ENV PYTHONPATH=/app
 

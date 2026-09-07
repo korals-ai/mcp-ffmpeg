@@ -21,6 +21,7 @@ import time
 from collections.abc import Callable
 from typing import Any
 
+import toollog
 from mcp.server.fastmcp import FastMCP
 
 from src import ffmpeg_ops
@@ -167,7 +168,7 @@ def thumbnail(src: str, at: str = "00:00:01", dst: str | None = None) -> str:
 
 def main() -> None:
     """Run the MCP server forever over Streamable HTTP. Blocks; entrypoint."""
-    logging.basicConfig(level=logging.INFO)
+    toollog.configure("ffmpeg")
     log.info("workspace-tool-ffmpeg MCP server on %s:%d (/mcp)", HOST, PORT)
     mcp.run(transport="streamable-http")
 

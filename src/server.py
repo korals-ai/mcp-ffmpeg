@@ -35,6 +35,10 @@ PORT = int(os.environ["WORKSPACE_TOOL_PORT"])
 
 mcp = FastMCP("ffmpeg", host=HOST, port=PORT, lifespan=loopwatch.lifespan)
 
+# The liveness target. Answered by the loop above, so silence means wedged —
+# see loopwatch.serve_health.
+loopwatch.serve_health(mcp)
+
 
 def _logged(op: str, fn: Callable[..., str], **kwargs: Any) -> str:
     """Run an op, emitting one structured line per call (keys match the
